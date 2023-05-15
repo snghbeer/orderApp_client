@@ -1,0 +1,72 @@
+.inventory_card {
+  background: #333538
+}
+
+.card_title {
+  text-shadow: rgb(150, 147, 135) 1px 0 5px;
+}
+
+svg {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.infinite-scroll-content {
+  text-align: center;
+  padding: 20px 0;
+}
+
+ion-item{
+  margin-bottom: 10px;
+}
+
+
+.avatar {
+  width: 100%;
+  height: auto;
+  max-width: 50px; 
+  border-radius: 50%;
+}
+
+.tableheader {
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+  word-wrap: break-word;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+@keyframes fadeInBottomToTop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 80px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeIn {
+  animation: fadeInBottomToTop 0.75s ease-in-out;
+  animation-fill-mode: both;
+}
+
+.dark .tableheader {
+  border-bottom: 1px solid var(--ion-text-color)
+}
+
+
+
+
+
+
+
+
+
