@@ -51,8 +51,6 @@ import { UserContext } from "./util/SessionContext";
 type ContentTypes = "menu" | "inventory" | "product_manager" | "cart";
 const isAdmin = (user: UserObject) => user && (user.role === UserPrivileges.Admin || user.role === UserPrivileges.Manager);
 
-//PROBLEM: SOMEHOW THIS PAGE DOESNT WANT TO RENDER
-
 export default function ProductManager(store: StoreProps ) {
   const [categories, setCategories] = useState<CategoryProps[]>([]);
   const [items, setItems] = useState<DetailedPageProps[]>([]);
@@ -164,7 +162,7 @@ export default function ProductManager(store: StoreProps ) {
         await store.connection?.execQuery(qry); 
         setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }
 
   function updateCart() {

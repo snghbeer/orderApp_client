@@ -1,5 +1,4 @@
 import { IonCard, IonCardHeader, IonCardContent, IonSpinner } from "@ionic/react";
-import Page from "./pages/Page";
 
 export const Loader = () => {
     const loader = (

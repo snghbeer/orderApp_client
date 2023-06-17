@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, RouteProps, Redirect, } from 'react-router-dom';
 import { UserObject, UserPrivileges } from '../components/interfaces/interfaces';
 import { MySQLiteDBConnection } from '../components/interfaces/controllers/Database';
+import { UserContext } from '../components/util/SessionContext';
 
 interface ProtectedRouteProps extends RouteProps {
   component: React.FC<any>;
@@ -20,7 +21,8 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ component: Compo
   )} />
 );
 
-export const AdminRoute: React.FC<AdminRouteProps> = ({ component: Component, user, ...rest }) => {
+export const AdminRoute: React.FC<AdminRouteProps> = ({ component: Component, ...rest }) => {
+  const user = useContext(UserContext)
   const isAdmin = user && (user.role === UserPrivileges.Admin || user.role === UserPrivileges.Manager);
 
   return(

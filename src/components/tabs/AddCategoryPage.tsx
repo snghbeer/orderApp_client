@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import {
   IonList,
   IonItem,
@@ -8,14 +8,9 @@ import {
   IonTextarea,
   IonToast,
   IonAlert,
-  IonButton,
-  IonIcon,
   IonSelect,
   IonSelectOption,
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
 } from "@ionic/react";
 import "./styles.css";
 
@@ -24,9 +19,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import {
   ProductProps,
   UpdatedProp,
-  CategoryProps, ProductManagerProps, 
+  CategoryProps, 
 } from "../interfaces/interfaces";
-import { image } from "ionicons/icons";
+//import { image } from "ionicons/icons";
 import { apiUrl } from "../../config";
 
 
@@ -160,8 +155,7 @@ const AddCProductContainer = (props: UpdatedProp) => {
   };
 
   const customActionSheetOptions = {
-    header: 'Categories',
-    subHeader: 'Select a category'
+    header: 'Select a category'
   };
 
   return (

@@ -161,12 +161,11 @@ export default function QRCodeGenerator() {
               </Link>
               <button onClick={menuQr} className="btn41-43 btn-43">Menu QR</button>
               <button onClick={checkPermission} className="btn41-43 btn-43">Scan</button>
-              <button onClick={stopScan} className="btn41-43 btn-43">Stopscan</button>
             </div>
           </IonCardContent>
         </IonCard>
       </IonContent>
-      <IonContent>
+      <IonContent >
         <ChartComponent />
       </IonContent>
     </>

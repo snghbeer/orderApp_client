@@ -12,12 +12,10 @@ import {
   IonLabel,
   IonItem,
   IonInput,
-  IonIcon,
   IonCard,
   useIonPicker,
   useIonAlert,
 } from "@ionic/react";
-import { image } from "ionicons/icons";
 import { capitalizeFirstLetter, jsonToFormData } from "../util/helpFunctions";
 import {
   DetailedPageProps,
@@ -99,6 +97,7 @@ export const DetailedItemPage = (props: DetailedPageProps) => {
         {
           text: "Cancel",
           role: "cancel",
+          cssClass: "ion-float-left"
         },
         {
           text: "Confirm",

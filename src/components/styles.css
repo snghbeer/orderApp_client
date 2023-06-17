@@ -510,14 +510,31 @@ ion-content .mycontainer{
   color: white !important;
 }
 
-
-/* .dark ion-menu.md ion-item.selected  ion-icon {
-  color: white !important;
-}
- */
-
 .dark .ios .show-back-button{
-  color: white !important
+  color: #ffffff !important
+}
+
+.ios ion-toggle, .md ion-toggle{
+  --background-checked: var(--ion-color-step-450);
+}
+
+.md .picker-toolbar, .md .alert-button-group{
+  justify-content: center;
+}
+
+.iframe-container {
+  position: relative;
+  overflow: hidden;
+  height: 500px; /* Set the fixed height value here */
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 

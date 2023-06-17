@@ -123,9 +123,11 @@ export interface RecordDTO{
   records: RecordItemDTO[];
   date: string;
   total: number;
+  fulfilled?: boolean;
   isOpen?: boolean;
   setOpen?: (bool: boolean) => void;
   waiter?: string;
+  validate?: () => void;
 }
 
 export type RecordItemDTO = {
@@ -147,7 +149,7 @@ export interface ServerToClientEvents {
   basicEmit: (a: number, b: string, c: Buffer) => void;
   withAck: (d: string, callback: (e: number) => void) => void;
   notif: (data: Buffer) => void;
-  new_order: (data: Buffer) => void;
+  new_order: (data: OrderNotification) => void;
   refresh: (data: Buffer) => void;
 
 }
@@ -180,6 +182,7 @@ export interface UserObject {
   role?: UserPrivileges;
   token?: string;
   socket?: Socket<ServerToClientEvents, ClientToServerEvents> | null | undefined;
+  uid?: string;
 }
 
 export interface ProductDetailPageProps extends RouteComponentProps<{id: string;}> {}
@@ -203,4 +206,9 @@ export interface SqliteDTO{
 export interface StoreProps{
   connection: MySQLiteDBConnection | undefined | null;
   isReady: boolean |undefined | null;
+}
+
+export interface OrderNotification{
+  id: string;
+  message: string;
 }

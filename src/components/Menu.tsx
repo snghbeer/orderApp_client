@@ -25,7 +25,7 @@ import {
 } from "ionicons/icons";
 import "./Menu.css";
 
-import {ActiveSessionProp, AppPage, UserPrivileges} from './interfaces/interfaces';
+import {ActiveSessionProp, AppPage, UserPrivileges, OrderNotification} from './interfaces/interfaces';
 import { useEffect, useState } from "react";
 import { LogoutMenuItem, LoginMenuItem } from "./theme/MenuItem";
 import { deleteUserSessionQry } from "./util/sqlQueries";
@@ -93,15 +93,15 @@ const presentToast = (msg: string) => {
   });
 }
 
-const scheduleNotification = (data: any) => {
+const scheduleNotification = (data: OrderNotification) => {
   LocalNotifications.checkPermissions().then(async (result) => {
     if (result.display === "granted") {
       // permission granted
       await LocalNotifications.schedule({
         notifications: [
           {
-            title: data.message,
-            body: 'New order received!',
+            title: `Order ${data.id}`,
+            body: data.message,
             id: 1,
             summaryText: data.message
             
@@ -123,9 +123,9 @@ const scheduleNotification = (data: any) => {
   
 
   useEffect(() => {
-    props.user?.socket?.on("new_order", (data:any) => {
+    props.user?.socket?.on("new_order", (data:OrderNotification) => {
       //console.log('Received data2:');
-      //console.log(data)
+      console.log(data)
       if(props.user?.role  === UserPrivileges.Admin || props.user?.role  === UserPrivileges.Manager){
         setShow(true) //only notify admins or managers
         scheduleNotification(data)
@@ -181,7 +181,7 @@ const scheduleNotification = (data: any) => {
         </IonList>
 
         {
-          (props.active && (props.user?.role === 0 || props.user?.role === 1)) ?
+          (props.active && (props.user?.role === UserPrivileges.Admin || props.user?.role === UserPrivileges.Manager)) ?
           <>
           <IonList id="labels-list">
           <IonListHeader>Manager</IonListHeader>
@@ -189,9 +189,7 @@ const scheduleNotification = (data: any) => {
               <IonIcon slot="start" icon={notifications} />
               <IonLabel> Orders</IonLabel>
               <IonLabel class="ion-justify-end">{notifs}</IonLabel>
-
             </IonItem>
-            <IonItem button onClick={scheduleNotification}>  test</IonItem>
         </IonList>
         </> : <></>
         }

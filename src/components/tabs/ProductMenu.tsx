@@ -1,18 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import {
   IonCol,
   IonList,
   useIonAlert,
   RefresherEventDetail,
   IonRefresher,
-  IonRefresherContent, IonCard, IonGrid, IonRow, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonTitle, IonToolbar
+  IonRefresherContent, IonCard, IonGrid, IonRow, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent,
 } from "@ionic/react";
 
-import { CartPropItems, DataObject, UserPrivileges } from "../interfaces/interfaces";
+import { CartPropItems, DataObject } from "../interfaces/interfaces";
 import { chevronDownCircleOutline } from "ionicons/icons";
 import DarkModeContext from "../theme/DarkModeContext";
-import CartContext from "../util/CartContext";
-import useQueryParam from "../util/useQryParameters";
+//import CartContext from "../util/CartContext";
+//import useQueryParam from "../util/useQryParameters";
 
 
 const MenuPage = (props: CartPropItems) => {

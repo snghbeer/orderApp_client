@@ -4,7 +4,8 @@ export const createUserSessionTable: string = `
     username TEXT UNIQUE NOT NULL,
     password TEXT ENCRYPTED,
     role SMALLINT,
-    token VARCHAR(255)
+    token VARCHAR(255),
+    uid VARCHAR(255)
     );
 
     CREATE TABLE IF NOT EXISTS product_session (id INTEGER PRIMARY KEY, json_data TEXT);
@@ -13,7 +14,7 @@ export const createUserSessionTable: string = `
 `;
 
 //user session
-export const insertUserSessionQry: string = `INSERT INTO users (username, password, role, token) VALUES (?,?,?,?);`
+export const insertUserSessionQry: string = `INSERT INTO users (username, password, role, token, uid) VALUES (?,?,?,?,?);`
 export const deleteUserSessionQry: string = `DELETE FROM users WHERE id = 1;`
 export const checkUserSessionCache: string = `SELECT * FROM users LIMIT 1;`
 

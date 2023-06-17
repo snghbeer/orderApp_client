@@ -9,15 +9,15 @@ import {
 } from "@ionic/react";
 import { Link } from "react-router-dom";
 import Page from "../pages/Page";
-import axios from "axios";
 
 import { ActiveSessionProp, UserObject } from "../interfaces/interfaces";
 import { useForm, SubmitHandler } from "react-hook-form";
+import {io} from 'socket.io-client';
 
 import { insertUserSessionQry } from "../util/sqlQueries";
 
 import "../styles.css";
-import { apiUrl } from "../../config";
+import { apiUrl, serverUrl } from "../../config";
 import { loginUser } from "./utils";
 
 function SignupContainer() {
@@ -28,7 +28,6 @@ function SignupContainer() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<UserObject>();
   const onSubmit: SubmitHandler<UserObject> = async (data) => {
@@ -40,18 +39,24 @@ function SignupContainer() {
     });
   };
 
-  async function registerUser(
-    userObject: UserObject,
-    callback: (res: any) => void
-  ) {
-    axios
+  async function registerUser(userObject: UserObject, callback: (res: any) => void) {
+    const url = apiUrl + "/register" 
+    await fetch(url, {
+      method: "POST",
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userObject)
+    })
+/*     axios
       .post((apiUrl as string) + "/register", userObject)
       .then(function (response) {
         callback(response);
       })
       .catch(function (error) {
         console.log(error);
-      });
+      }); */
   }
 
   const myContainer = (
@@ -119,10 +124,6 @@ function LoginContainer(props: ActiveSessionProp) {
     password: "",
   });
 
-  const hashPwd = (newval: string) => {
-    setInputFields((prevState) => ({ ...prevState!, password: newval }));
-  };
-
   const handleInput = (ev: Event) => {
     const { id, value } = ev.target as HTMLIonInputElement;
     setInputFields((oldState) => ({
@@ -149,17 +150,20 @@ function LoginContainer(props: ActiveSessionProp) {
       const userInput = inputFields;
  
        await loginUser(userInput, async (res) => {
+        console.log(res);
         if (res.succes) {
           //sqlite
-          let vals = [userInput.username, userInput.password, res.role, res.token]
+          let vals = [userInput.username, userInput.password, res.role, res.token, res.id]
           await props?.db!.runQuery(insertUserSessionQry, vals);
-
+          const sock = io(serverUrl!)
           props?.setActive!(true);
           props?.setUser!({
             username: userInput.username,
             password: userInput.password,
             role: res.role, 
-            token: res.token
+            token: res.token,
+            uid: res.id,
+            socket: sock
           })
         }else{
           setMsg(res.message)

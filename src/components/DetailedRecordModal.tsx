@@ -75,8 +75,9 @@ export const DetailedRecordPage = (props: RecordDTO) => {
               </IonItem>
           </IonCard>
         )}
-        <IonRow class="cart_card ion-padding ion-justify-content-center">
-          <button className="btn41-43 btn-43 zzz_btn">Take</button>
+        <IonRow class="ion-float-right ion-margin-horizontal ion-justify-content-center ion-nowrap">
+          <IonCol ><button className="btn41-43 btn-43 zzz_btn">Take</button></IonCol>
+          <IonCol ><button onClick={props.validate} className="btn41-43 btn-43 zzz_btn">Validate</button></IonCol>
         </IonRow>
       </IonContent>
     </IonModal>

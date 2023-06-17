@@ -13,7 +13,6 @@ import {
   IonSearchbar,
   SearchbarCustomEvent,
   IonContent,
-  IonTitle,
 } from "@ionic/react";
 import { chevronDownCircleOutline } from "ionicons/icons";
 import "../styles.css";
@@ -93,10 +92,10 @@ const HomePage = (props: UpdatedProp) => {
         <IonSearchbar onIonChange={handleSearch}></IonSearchbar>
         <IonGrid>
           <IonRow>
-            <IonCol size="8" sizeXs="6">
+            <IonCol size="8" sizeXl="8" sizeLg="8" sizeMd="7" sizeSm="6" sizeXs="6">
               <h4>Product</h4>
             </IonCol>
-            <IonCol class="ion-margin-start">
+            <IonCol class="ion-margin-start ion-text-center">
               <h4>Total</h4>
             </IonCol>
             <IonCol class="ion-text-end">
@@ -117,10 +116,10 @@ const HomePage = (props: UpdatedProp) => {
               <IonAvatar slot="start">
                 <img src={item.item.image} alt="avatar" />
               </IonAvatar>
-              <IonCol size="8" sizeXs="6">
+              <IonCol size="8" sizeXl="8" sizeLg="8" sizeMd="7" sizeSm="6" sizeXs="6">
                 <IonLabel>{item.item.name}</IonLabel>
               </IonCol>
-              <IonCol class="ion-margin-start">
+              <IonCol size="2" sizeXs="2" class="ion-margin-start ion-text-center">
                 <IonLabel>{item.item.quantity}</IonLabel>
               </IonCol>
               <IonCol class="ion-text-end">
